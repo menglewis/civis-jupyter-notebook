@@ -25,6 +25,26 @@ Here you need to replace ``<your kernel>`` with the name of your kernel (e.g.,
 one of ``python2``, ``python3``, or ``ir``). Note that your Dockerfile must use
 ``root`` as the default user.
 
+See the `example`_ Docker image for more details.
+
+.. _example: example
+
+Integration Testing with the Civis Platform
+-------------------------------------------
+
+If you would like to test your image's integration with the Civis Platform locally follow the steps below:
+
+1. Create a notebook in your Civis Platform account and grab the id of the notebook. This ID is the number 
+   that appears at the end of the URL for the notebook, ``https://platform.civisanalytics.com/#/notebooks/<NOTEBOOK ID>``.
+2. Create an environment file called ``my.env`` and add the following to it::
+
+    PLATFORM_OBJECT_ID=<NOTEBOOK ID>
+    CIVIS_API_KEY=<YOUR CIVIS API KEY>
+
+3. Build your image locally: ``docker build -t test .``.
+4. Run the container: ``docker run --rm -p 8888:8888 --env-file my.env test``.
+5. Access the notebook at the ip of your Docker host with port 8888 (e.g., ``http://localhost:8888/notebooks/notebook.ipynb``).
+
 Contributing
 ------------
 
