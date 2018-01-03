@@ -11,6 +11,7 @@ import os
 import sys
 import subprocess
 import requests
+from io import open
 from subprocess import check_call
 from subprocess import CalledProcessError
 from civis_jupyter_notebooks import log_utils
@@ -41,7 +42,7 @@ def initialize_notebook_from_platform(notebook_path):
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        with open(notebook_path, 'w') as nb_file:
+        with open(notebook_path, mode='w', encoding='utf-8') as nb_file:
             nbformat.write(notebook, nb_file)
 
     logger.info('Notebook file ready')
