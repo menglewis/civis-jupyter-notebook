@@ -64,7 +64,11 @@ def civis_setup(c):
     else:
         nb_file_path = os.environ.get('NOTEBOOK_FILE_PATH', 'notebook.ipynb').strip('/')
         notebook_full_path = os.path.join(ROOT_DIR, nb_file_path)
-        c.NotebookApp.default_url = '/notebooks/{}'.format(nb_file_path)
+        jupyter_lab = os.environ.get('JUPYTER_LAB', None)
+        if jupyter_lab:
+            c.NotebookApp.default_url = '/lab'
+        else:
+            c.NotebookApp.default_url = '/notebooks/{}'.format(nb_file_path)
 
         get_notebook(notebook_full_path)
         stage_new_notebook(nb_file_path)
