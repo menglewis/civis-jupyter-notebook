@@ -32,4 +32,6 @@ setup(
         'console_scripts': [
             'civis-jupyter-notebooks-install = '
             'civis_jupyter_notebooks.__main__:cli',
+            'civis-jupyter-lab-install = '
+            'civis_jupyter_notebooks.__main__:cli_lab',
             ]})
